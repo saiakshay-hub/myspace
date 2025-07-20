@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="category-grid">
+    <nav class="navi">
+        <a href="/biryani_items"><img src="{% static 'images/Biryani.avif' %}" alt="biryani"></a>
+        <a href="/burger"><img src="{% static 'images/Burger.avif' %}" alt="Burger"></a>
+        <a href="/dose"><img src="{% static 'images/Dosa.avif' %}" alt="Dosa"></a>
+        <a href="/pizza"><img src="{% static 'images/Pizza.avif' %}" alt="Pizza"></a>
+        <a href="/salad"><img src="{% static 'images/Salad.avif' %}" alt="Salad"></a>
+        <a href="/shake"><img src="{% static 'images/Shake.avif' %}" alt="Shake"></a>
+        <a href="/south"><img src="{% static 'images/south.avif' %}" alt="south"></a>
+        <a href="/ice"><img src="{% static 'images/ice.avif' %}" alt="ice"></a>
+    </nav>
+</div><br> 
+
+
+<section class="restaurant-section">
+  <h2 class="restaurant-title">🍽️ Best DineOut Restaurants</h2>
+
+  <div class="restaurant-cards">
+
+    <div class="restaurant-card">
+      <img src="{% static 'images/restaurant1.avif'%}" alt="Indian Delight">
+      <h3>Indian Delight</h3>
+      <p>Experience the richness of spices and flavors.</p>
+      <a href="/restaurant/indian-delight" class="restaurant-btn">View Menu</a>
+    </div>
+
+    <div class="restaurant-card">
+      <img src="{% static 'images/restaurant2.avif'%}" alt="Wok Express">
+      <h3>Wok Express</h3>
+      <p>Authentic Chinese delicacies made fresh.</p>
+      <a href="/restaurant/wok-express" class="restaurant-btn">View Menu</a>
+    </div>
+
+    <div class="restaurant-card">
+      <img src="{% static 'images/restaurant3.jpg'%}" alt="La Italiano">
+      <h3>La Italiano</h3>
+      <p>Delicious pastas and cheesy pizzas await you.</p>
+      <a href="xxx" class="restaurant-btn">View Menu</a>
+    </div>
+     <div class="restaurant-card">
+      <img src="{% static 'images/restaurant4.jpg'%}" alt="La Italiano">
+      <h3>La Italiano</h3>
+      <p>Delicious pastas and cheesy pizzas await you.</p>
+      <a href="xxx" class="restaurant-btn">View Menu</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h2>MySpace</h2>
+      <p>Your personal space for creativity and connection.</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-links">
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 MySpace. All rights reserved.
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

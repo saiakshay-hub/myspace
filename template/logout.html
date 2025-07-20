@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+  <form action="{% url 'logout' %}" method="post">
+     {% csrf_token %}
+    <h2>Are you sure you want to log out?</h2>
+    <button type="submit">Logout</button>
+  {% endif %}
+  {% if messages %}
+   {% for message in messages %}
+     <p>{{ messages }}</p>
+    {% endfor %}
+  {% endif %}
+  </form>

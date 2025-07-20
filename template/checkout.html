@@ -1,0 +1,76 @@
+<style>
+    body {
+        background: #fff;
+        color: #111;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .checkout-container {
+        max-width: 400px;
+        margin: 40px auto;
+        background: #000;
+        color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+        padding: 32px 24px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 24px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    p {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 32px;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    select, input[type="hidden"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 24px;
+        border: none;
+        border-radius: 5px;
+        background: #fff;
+        color: #111;
+        font-size: 1em;
+    }
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background: #fff;
+        color: #000000;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+    }
+    button[type="submit"]:hover {
+        background: #ce0000;
+        color: #fff;
+    }
+</style>
+<div class="checkout-container">
+<h2>Checkout</h2>
+<p>Total Amount to Pay: ₹{{ total }}</p>
+
+<form action="{% url 'success' %}" method="POST">
+    {% csrf_token %}
+    <label for="payment_mode">Payment Mode:</label>
+    <select name="payment_mode" id="payment_mode" required>
+        <option value="UPI">UPI</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+    </select>
+
+    <input type="hidden" name="total" value="{{ total }}">
+    <button type="submit">Pay Now</button>
+</form>

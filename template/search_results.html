@@ -1,0 +1,72 @@
+{% load static %}
+<style>
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #000;
+    color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+li:hover {
+    background: #a79797;
+    color: #000;
+    transform: scale(1.03) translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.img1 {
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 300px;
+}
+.noresult{
+    height: 90%;
+    justify-content: center;
+    text-align: center;
+    margin: 2%;
+    margin-right: 6%;
+    padding-left: 200px;
+}
+</style>
+
+
+
+<h2> Search Result :</h2>
+{% if products %}
+<ul>
+    {% for product in products %}
+    
+        <li>
+                    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img1" style="width: 100%; height: auto; border-radius: 10px;">
+        {% endif %}
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: {{ product.price }}</p>
+             <form action="{% url 'buy_now' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="background-color: #ff5a5f;color: white;border: none;padding: 10px 20px; border-radius: 5px;">Buy Now</button>
+            </form>
+            <form action="{% url 'add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style=" background-color: #ddd;color: black; border: none; padding: 10px 20px;
+  border-radius: 5px;">Add to Cart</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No product found☹️.</p>
+      <img src="{% static '/images/search.webp'%}" class="noresult" >
+{% endif %}
+
+

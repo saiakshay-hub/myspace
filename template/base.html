@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="{% static  'css/myspace.css'  %}">
+       
+    <title>my space  personal project</title>
+    
+    
+</head>
+<body>
+    <div id="splash-screen"  class="splash-screen">
+        <img src="{% static '/gif/my.gif'%}" alt="My Space Project" >
+    </div>
+    <div>
+        <header>
+        <div class="navbar">
+            <img src="{% static '/images/my.jpg'%}" >
+            <div class="search">
+                <form method="GET" action="/search/">
+                    <input type ='text' class="search" name="q" placeholder="search..." >
+                </form>
+            </div>
+            <div style="display: flex; padding-top: 10px; padding-right: 20px;">
+                {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-login">Logout</button>
+                {% else %}
+                <form action="{% url 'login' %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
+                <form action="{% url 'signup' %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-sign">signup</button>
+                {% endif %}
+            </div>
+        </div><hr>
+          <div class="navbar-2">
+            <ul class="nav-links">
+                <li><a type="button" href="/">Home</a></li>
+                <li><a type="button" href="{% url 'about'%}">About us</a></li>
+                <li><a href="{% url 'cart' %}">Cart</a></li>
+                <li><a href="{% url 'my-orders' %}">My Orders</a></li>
+
+            </ul>
+        </div>
+    </header>
+    </div>
+   
+    <section>
+        <div class="container">
+             <h1>My Space</h1>
+             <p class="cont"><b>Welcome to My Space!</b><br> This is a personal project where I can share my thoughts, ideas, and experiences.</p>
+             <p class="cont">Feel free to explore and connect with me!</p>
+        </div>
+    </section><br>
+ 
+     {% block content %} 
+     {% endblock %}
+
+
+
+
+
+
+    <script src="{% static '/js/myspace.js' %}"></script>
+    
+</body>
+</html>
