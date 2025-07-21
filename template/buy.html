@@ -1,0 +1,66 @@
+<style>
+    
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    color: #fff;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #fff;
+    border-radius: 8px;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #ec0707;
+    color: #fff;
+    border: 2px solid #fff;
+}
+</style>
+<h2 class="header">Buy Now</h2>
+<img src="{{ product.image.url }}" width="200">
+<h2>{{ product.name }}</h2>
+<p>{{ product.description }}</p>
+<p>₹ {{ product.price }}</p>  
+
+    
+    <form method="POST" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <input type="hidden" name="total" value="{{  total }}">
+    <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+</form>
