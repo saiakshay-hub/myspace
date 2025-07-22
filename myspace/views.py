@@ -102,6 +102,7 @@ def ice(request):
 
 
 
+<<<<<<< HEAD
 @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -129,6 +130,38 @@ def cart_view(request):
         'total': total
     })
 
+=======
+def add_to_cart(request, product_id):
+    cart = request.session.get('cart', [])
+    if product_id not in cart:
+        cart.append(product_id)
+        request.session['cart'] = cart
+    return redirect('cart')
+
+def remove_from_cart(request, product_id):
+    cart = request.session.get('cart', [])
+    if product_id in cart:
+        cart.remove(product_id)
+        request.session['cart'] = cart
+    return redirect('cart')
+
+def cart_view(request):
+    cart = request.session.get('cart', [])
+    products = Product.objects.filter(id__in=cart)
+    total = sum(p.price for p in products)
+    return render(request, 'cart.html', {'products': products, 'total': total})
+
+@login_required
+@csrf_protect
+def buy_now(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    
+    # we will Send to checkout via POST form
+    if request.method == 'POST':
+        return render(request, 'checkout.html', {'total': product.price})
+    
+    return render(request, 'buy.html', {'product': product})
+>>>>>>> 242906dff4c207d97b7e3881b97ee299ca0aeb29
 
 def about(request): 
     return render(request, 'about.html')
@@ -140,6 +173,7 @@ def about(request):
 def checkout_view(request):
     if request.method == 'POST':
         total_str = request.POST.get('total')
+<<<<<<< HEAD
         try:
             total = float(total_str)
         except (ValueError, TypeError):
@@ -163,6 +197,16 @@ def checkout_view(request):
         return render(request, 'checkout.html', {'total': total})
     else:
         return redirect('cart')
+=======
+        print ("received total:",total_str)
+        try:
+            total = float(total_str) 
+        except (ValueError, TypeError):
+            return HttpResponse("Invalid total amount", status=400)
+        return render(request, 'checkout.html', {'total': total})
+    else:
+        return redirect('cart') 
+>>>>>>> 242906dff4c207d97b7e3881b97ee299ca0aeb29
     
 
 

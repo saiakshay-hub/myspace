@@ -32,17 +32,28 @@ class Product(models.Model):
         return self.name
     
 class Order(models.Model):
+<<<<<<< HEAD
      user = models.ForeignKey(User, on_delete=models.CASCADE)
      Product = models.ForeignKey(Product, on_delete=models.CASCADE)
      price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+=======
+     Product = models.ForeignKey(Product, on_delete=models.CASCADE)
+>>>>>>> 242906dff4c207d97b7e3881b97ee299ca0aeb29
      customer = models.ForeignKey(customer, on_delete=models.CASCADE,null=True, blank=True)
      quantity =models.IntegerField(default=1)
      address =models.CharField(max_length=100,default='',blank=True)
      phone=models.CharField(max_length=20,default='',blank=True)
      date=models.DateField(default=datetime.datetime.today)
+<<<<<<< HEAD
      status=models.BooleanField(default=False)
      def __str__(self):
                return f"{self.user.username} - {self.Product.name} - Qty: {self.quantity}"
+=======
+     
+     status=models.BooleanField(default=False)
+     def __str__(self):
+        return self.product
+>>>>>>> 242906dff4c207d97b7e3881b97ee299ca0aeb29
      
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -53,7 +64,10 @@ class Cart(models.Model):
         return f"{self.user.username} - {self.product.name} ({self.quantity})"
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 242906dff4c207d97b7e3881b97ee299ca0aeb29
 class Checkout(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

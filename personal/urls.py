@@ -32,6 +32,10 @@ urlpatterns = [
    path('',views.base,name='home'),
    path('logout/',LogoutView.as_view(next_page='login'),name='logout'),
    path('cart/', views.cart_view, name='cart'),
+<<<<<<< HEAD
+=======
+   path('buy-now/<int:product_id>/', views.buy_now, name='buy_now'),
+>>>>>>> 242906dff4c207d97b7e3881b97ee299ca0aeb29
     path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     path('remove-from-cart/<int:product_id>/', views.remove_from_cart, name='remove_from_cart'),
      path('biryani_items/', views.biryani_items, name='biryani_items'),
