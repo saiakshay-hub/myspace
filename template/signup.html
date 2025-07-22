@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST">
+    {% csrf_token %}
+    <h2>Sign Up</h2>
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <button type="submit">Sign Up</button>
+    <p>Already have an account? <a href="/login/" style="color: #0ff;">Login</a></p>
+    {% for message in messages %}
+    <h3 style="color: red;">{{ message }}</h3>
+    {% endfor %}
+  
+  </form>
+
+</body>
+</html>
