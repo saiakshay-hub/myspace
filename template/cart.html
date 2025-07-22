@@ -1,0 +1,78 @@
+{% load static %}
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+    h2, h3 {
+        color: #fff;
+    }
+    a {
+        color: #0ff;
+    }
+        div[style*="border: 1px solid"] {
+        background-color: #111;
+        border: 1px solid #fff !important;
+        box-shadow: 2px 2px 8px #222 !important;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+    div[style*="border: 1px solid"]:hover {
+        box-shadow: 0 6px 24px #444, 0 2px 8px #222 !important;
+        transform: translateY(-4px) scale(1.03);
+        z-index: 2;
+    }
+    button[type="submit"] {
+        transition: background 0.2s, color 0.2s;
+    }
+    button[type="submit"]:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+    }
+    img {
+        border: 2px solid #fff;
+        transition: box-shadow 0.2s, transform 0.2s;
+        box-shadow: 0 2px 8px #f1e9e9;
+    }
+    img:hover {
+        box-shadow: 0 4px 16px #f6eeee, 0 2px 8px #222;
+        transform: scale(1.03);
+    }
+</style>
+<h2 style="text-align: center;">🛒 Your Cart</h2>
+
+{% if cart_items %}
+<div style="max-width: 700px; margin: auto;">
+    {% for item in cart_items %}
+    <div style="border: 1px solid #000; border-radius: 8px; padding: 10px; margin-bottom: 10px;">
+        <div style="display: flex; gap: 15px;">
+            {% if item.product.image %}
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 80px; height: auto;">
+            {% endif %}
+            <div>
+                {%if item.product.id %}
+                 <p>{{ item.product.name }} - ₹{{ item.product.price }} x {{ item.quantity }}</p>
+                <a href="{% url 'remove_from_cart' item.product.id %}" style="color: red;">Remove</a>
+                 {% else %}
+                 <span> Invalid product</span>
+                 {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+    
+    <form method="POST" action="{% url 'checkout' %}">
+     {% csrf_token %}
+    <input type="hidden" name="total" value="{{ total }}">
+    <button type="submit" class="btn btn-primary">Buy Now</button>
+</form>
+
+    
+    
+</div>
+{% else %}
+<p style="text-align: center;">Your cart is empty.</p>
+{% endif %}
